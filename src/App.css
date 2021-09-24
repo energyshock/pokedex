@@ -1,3 +1,9 @@
 .capitalize {
   text-transform: capitalize;
 }
+
+.pokemon-sprite {
+  width: 96px;
+  height: auto;
+  margin: 0 auto;
+}
