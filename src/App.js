@@ -1,16 +1,23 @@
 import React from 'react';
 import './App.css';
-import * as pokeapiCall from './Pokemon.json';
-import FilterablePokemonsTable from './components/pokemon/FilterablePokemonsTable';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+/* import * as pokeapiCall from './Pokemon.json';
+import FilterablePokemonsTable from './components/pokemon/FilterablePokemonsTable'; */
 import Navbar from './components/layout/Navbar';
+import Home from './components/pages/Home';
+import NotFound from './components/pages/NotFound';
+import Pokemon from './components/pokemon/Pokemon';
 
 const App = () => {
-  const POKEMON = pokeapiCall.results;
   return (
-    <div>
+    <Router>
       <Navbar />
-      <FilterablePokemonsTable pokemons={POKEMON} />
-    </div>
+      <Switch>
+        <Route exact path="/" component={Home}></Route>
+        <Route exact path="/pokemon/:id" component={Pokemon}></Route>
+        <Route component={NotFound}></Route>
+      </Switch>
+    </Router>
   );
 };
 
