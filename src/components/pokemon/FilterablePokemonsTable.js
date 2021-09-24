@@ -15,7 +15,7 @@ const FilterablePokemonsTable = ({ pokemons }) => {
         filterText={filterText}
         onFilterTextChange={handleFilterTextChange}
       />
-      {<PokemonsTable pokemons={pokemons} filterText={filterText} />}
+      <PokemonsTable pokemons={pokemons} filterText={filterText} />
     </div>
   );
 };
