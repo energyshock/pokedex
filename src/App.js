@@ -1,20 +1,34 @@
-import React from 'react';
+import { useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Navbar from './components/layout/Navbar';
-import Home from './components/pages/Home';
-import NotFound from './components/pages/NotFound';
-import Pokemon from './components/pokemon/Pokemon';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Pokemon from './components/Pokemon';
+import * as pokeapiCall from './Pokemon.json';
+import FilterablePokemonsTable from './components/FilterablePokemonsTable';
 
 const App = () => {
+  const [pokemons, setPokemons] = useState(pokeapiCall.results);
+
+  console.log('App.js');
+
+  /* useEffect(() => {
+    const getPokemons = () => setPokemons(pokeapiCall.results);
+    getPokemons();
+  }, []); */
+
   return (
     <Router>
       <Navbar />
-      <Switch>
-        <Route exact path="/" component={Home}></Route>
-        <Route exact path="/pokemon/:id" component={Pokemon}></Route>
-        <Route component={NotFound}></Route>
-      </Switch>
+      <Route
+        exact
+        path="/"
+        render={() => (
+          <>
+            <FilterablePokemonsTable pokemons={pokemons} />
+          </>
+        )}
+      ></Route>
+      <Route path="/pokemon/:id" component={Pokemon}></Route>
     </Router>
   );
 };

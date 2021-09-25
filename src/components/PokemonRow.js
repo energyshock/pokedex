@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const PokemonRow = ({ pokemon, id }) => {
@@ -9,13 +9,18 @@ const PokemonRow = ({ pokemon, id }) => {
         <img src={imgSrc} className="card-img-top pokemon-sprite" alt="" />
         <div className="card-body pt-0">
           <h5 className="card-title">{pokemon.name}</h5>
-          <Link to={`pokemon/${id}`} className="btn btn-primary">
+          <Link to={`/pokemon/${id}`} className="btn btn-primary">
             View More
           </Link>
         </div>
       </div>
     </div>
   );
+};
+
+PokemonRow.propTypes = {
+  pokemon: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default PokemonRow;
