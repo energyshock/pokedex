@@ -34,7 +34,10 @@ const App = () => {
     indexOfFirstPokemon,
     indexOfLastPokemon
   );
-  console.log(currentPokemons);
+  console.log('indexOfLastPokemon: ' + indexOfLastPokemon);
+  console.log('indexOfFirstPokemon: ' + indexOfFirstPokemon);
+  console.log('currentPage: ' + currentPage);
+  // console.log(currentPokemons);
 
   // Change page
   const paginate = pageNumber => {
