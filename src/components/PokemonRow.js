@@ -20,7 +20,7 @@ const PokemonRow = ({ pokemon, id }) => {
 
 PokemonRow.propTypes = {
   pokemon: PropTypes.object.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default PokemonRow;

@@ -1,20 +1,45 @@
-import { useState } from 'react';
-import './App.css';
+import { useState, useEffect } from 'react';
+import Pagination from './components/Pagination';
+import axios from 'axios';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Pokemon from './components/Pokemon';
-import * as pokeapiCall from './Pokemon.json';
 import FilterablePokemonsTable from './components/FilterablePokemonsTable';
+import './App.css';
 
 const App = () => {
-  const [pokemons, setPokemons] = useState(pokeapiCall.results);
+  const [pokemons, setPokemons] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  console.log('App.js');
+  const pokemonsPerPage = 12;
 
-  /* useEffect(() => {
-    const getPokemons = () => setPokemons(pokeapiCall.results);
+  useEffect(() => {
+    const getPokemons = async () => {
+      const pokemonsFromServer = await fetchPokemons();
+      setPokemons(pokemonsFromServer);
+    };
+
     getPokemons();
-  }, []); */
+  }, []);
+
+  const fetchPokemons = async () => {
+    const res = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=898');
+    return res.data.results;
+  };
+
+  // Get current pokemons
+  const indexOfLastPokemon = currentPage * pokemonsPerPage;
+  const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
+  const currentPokemons = pokemons.slice(
+    indexOfFirstPokemon,
+    indexOfLastPokemon
+  );
+  console.log(currentPokemons);
+
+  // Change page
+  const paginate = pageNumber => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <Router>
@@ -24,7 +49,13 @@ const App = () => {
         path="/"
         render={() => (
           <>
-            <FilterablePokemonsTable pokemons={pokemons} />
+            <FilterablePokemonsTable pokemons={currentPokemons} />
+            <Pagination
+              pokemonsPerPage={pokemonsPerPage}
+              totalPokemons={pokemons.length}
+              paginate={paginate}
+              currentPage={currentPage}
+            />
           </>
         )}
       ></Route>
