@@ -8,9 +8,24 @@ const Pagination = ({
   currentPage,
 }) => {
   const pageNumbers = [];
+  const pages = [];
 
   for (let i = 1; i <= Math.ceil(totalPokemons / pokemonsPerPage); i++) {
     pageNumbers.push(i);
+  }
+
+  for (
+    let i = currentPage;
+    i < currentPage + 3 && currentPage < pageNumbers.length;
+    i++
+  ) {
+    pages.push(
+      <li key={i} className={`page-item ${currentPage === i ? 'active' : ''}`}>
+        <Link to="/" onClick={() => paginate(i)} className="page-link">
+          {i}
+        </Link>
+      </li>
+    );
   }
 
   return (
@@ -19,28 +34,18 @@ const Pagination = ({
         <li className="page-item">
           <Link
             to="/"
-            onClick={currentPage > 1 && (() => paginate(currentPage - 1))}
+            onClick={() => currentPage > 1 && paginate(currentPage - 1)}
             className="page-link"
           >
             Previous
           </Link>
         </li>
-        {pageNumbers.map(number => (
-          <li
-            key={number}
-            className={`page-item ${currentPage === number && 'active'}`}
-          >
-            <Link to="/" onClick={() => paginate(number)} className="page-link">
-              {number}
-            </Link>
-          </li>
-        ))}
+        {pages.map(page => page)}
         <li className="page-item">
           <Link
             to="/"
-            onClick={
-              currentPage < pageNumbers.length &&
-              (() => paginate(currentPage + 1))
+            onClick={() =>
+              currentPage < pageNumbers.length && paginate(currentPage + 1)
             }
             className="page-link"
           >
@@ -50,22 +55,6 @@ const Pagination = ({
       </ul>
     </nav>
   );
-  /* return (
-    <nav className="container">
-      <ul className="pagination d-flex flex-wrap justify-content-center mt-4 gap-2">
-        {pageNumbers.map(number => (
-          <li
-            key={number}
-            className={`page-item ${currentPage === number && 'active'}`}
-          >
-            <Link to="/" onClick={() => paginate(number)} className="page-link">
-              {number}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  ); */
 };
 
 Pagination.propTypes = {

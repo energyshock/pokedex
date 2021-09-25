@@ -10,7 +10,6 @@ import './App.css';
 const App = () => {
   const [pokemons, setPokemons] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-
   const pokemonsPerPage = 12;
 
   useEffect(() => {
@@ -34,10 +33,6 @@ const App = () => {
     indexOfFirstPokemon,
     indexOfLastPokemon
   );
-  console.log('indexOfLastPokemon: ' + indexOfLastPokemon);
-  console.log('indexOfFirstPokemon: ' + indexOfFirstPokemon);
-  console.log('currentPage: ' + currentPage);
-  // console.log(currentPokemons);
 
   // Change page
   const paginate = pageNumber => {
