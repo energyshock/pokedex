@@ -13,18 +13,18 @@ const App = () => {
   const pokemonsPerPage = 12;
 
   useEffect(() => {
-    const getPokemons = async () => {
-      const pokemonsFromServer = await fetchPokemons();
-      setPokemons(pokemonsFromServer);
+    const fetchPokemons = async () => {
+      try {
+        const response = await axios.get(
+          'https://pokeapi.co/api/v2/pokemon?limit=898'
+        );
+        setPokemons(response.data.results);
+      } catch (error) {
+        console.log(error);
+      }
     };
-
-    getPokemons();
+    fetchPokemons();
   }, []);
-
-  const fetchPokemons = async () => {
-    const res = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=898');
-    return res.data.results;
-  };
 
   // Get current pokemons
   const indexOfLastPokemon = currentPage * pokemonsPerPage;

@@ -9,7 +9,7 @@ const PokemonsTable = ({ pokemons }) => {
   };
 
   return (
-    <div className="container mt-5">
+    <>
       <div className="row g-4 capitalize">
         {pokemons.map((pokemon, index) => (
           <PokemonRow
@@ -19,7 +19,7 @@ const PokemonsTable = ({ pokemons }) => {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

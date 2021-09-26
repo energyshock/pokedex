@@ -3,7 +3,7 @@ import PokemonsTable from './PokemonsTable';
 
 const FilterablePokemonsTable = ({ pokemons }) => {
   return (
-    <div className="container">
+    <div className="container mt-5">
       <PokemonsTable pokemons={pokemons} />
     </div>
   );
