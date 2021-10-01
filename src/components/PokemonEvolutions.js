@@ -1,10 +1,15 @@
-const PokemonEvolutions = ({ evolutionChain, name }) => {
-  console.log(evolutionChain);
+const PokemonEvolutions = ({ evolutions }) => {
+  console.log(evolutions.preEvolution);
+
   return (
-    <>
-      <h5>Evolutions:</h5>
-      <h6>{name}</h6>
-    </>
+    <ul className="list-group list-group-root list-group-flush">
+      <li className="list-group-item">{evolutions.name}</li>
+      {evolutions.evolutions.map(evolution => {
+        return (
+          <PokemonEvolutions evolutions={evolution} key={evolution.name} />
+        );
+      })}
+    </ul>
   );
 };
 

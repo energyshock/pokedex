@@ -49,14 +49,30 @@ const Pokemon = props => {
 
   const getChain = async url => {
     try {
+      // console.log(url);
       const responseChain = await axios.get(url);
-      return responseChain.data.chain;
+      return buildEvolutions(responseChain.data.chain);
     } catch (error) {
       console.log(error);
     }
   };
 
-  console.log('init: ' + pokemon);
+  const buildEvolutions = (evoChain, preEvolutionName = '') => {
+    const formEvolution = {
+      name: evoChain.species.name,
+      evolutions: [],
+      preEvolution: preEvolutionName,
+    };
+
+    for (let i = 0; i < evoChain.evolves_to.length; i++) {
+      formEvolution.evolutions.push(
+        buildEvolutions(evoChain.evolves_to[i], formEvolution.name)
+      );
+    }
+    return formEvolution;
+  };
+
+  // console.log(pokemon.evolutions);
 
   return (
     <>
@@ -115,12 +131,12 @@ const Pokemon = props => {
                 ))}
               </ul>
             </div>
-            <div className="col">
-              <PokemonEvolutions
-                evolutionChain={pokemon.evolutions}
-                name={pokemon.name}
-              />
-            </div>
+            {pokemon.evolutions.evolutions.length !== 0 && (
+              <div className="col">
+                <h5>Possible Evolutions:</h5>
+                <PokemonEvolutions evolutions={pokemon.evolutions} />
+              </div>
+            )}
           </div>
         </div>
       )}

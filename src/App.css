@@ -1,5 +1,16 @@
+/* .capitalizeFirstLetter::first-letter {
+  text-transform: capitalize;
+} */
 .capitalize {
   text-transform: capitalize;
+}
+
+.list-group.list-group-root > .list-group > .list-group-item {
+  padding-left: 30px;
+}
+
+.list-group.list-group-root > .list-group > .list-group > .list-group-item {
+  padding-left: 45px;
 }
 
 .pokemon-sprite {
