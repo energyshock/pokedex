@@ -1,20 +1,29 @@
-/* .capitalizeFirstLetter::first-letter {
-  text-transform: capitalize;
-} */
 .capitalize {
   text-transform: capitalize;
 }
 
 .list-group.list-group-root > .list-group > .list-group-item {
-  padding-left: 30px;
+  padding-left: 36px;
 }
 
 .list-group.list-group-root > .list-group > .list-group > .list-group-item {
-  padding-left: 45px;
+  padding-left: 56px;
 }
 
 .pokemon-sprite {
   width: 96px;
   height: auto;
   margin: 0 auto;
+}
+
+.progress {
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 0;
+  height: 20px;
+}
+
+@media (min-width: 1200px) {
+  .container-details {
+    max-width: 720px;
+  }
 }
