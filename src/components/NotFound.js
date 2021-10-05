@@ -4,7 +4,7 @@ const NotFound = () => {
   return (
     <>
       <BackToAllBtn />
-      <div className="container mt-3">
+      <div className="container container-details mt-3">
         <div className="card mt-3">
           <div className="card-body">
             <h1 className="card-title">Not Found</h1>
