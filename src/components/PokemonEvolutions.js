@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const PokemonEvolutions = ({ evolutions, index = 1 }) => {
   return (
     <ul className="list-group list-group-root">
@@ -15,6 +17,11 @@ const PokemonEvolutions = ({ evolutions, index = 1 }) => {
       })}
     </ul>
   );
+};
+
+PokemonEvolutions.propTypes = {
+  evolutions: PropTypes.object.isRequired,
+  index: PropTypes.number,
 };
 
 export default PokemonEvolutions;

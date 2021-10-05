@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const PokemonRow = ({ pokemon, id }) => {
   const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
   return (
-    <div className="col-lg-3 col-md-4 col-sm-6">
+    <div className="col">
       <div className="card text-center">
         <img src={imgSrc} className="card-img-top pokemon-sprite" alt="" />
         <div className="card-body pt-0">

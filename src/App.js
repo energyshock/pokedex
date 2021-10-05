@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import Pagination from './components/Pagination';
 import axios from 'axios';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import NotFound from './components/NotFound';
 import Pokemon from './components/Pokemon';
 import FilterablePokemonsTable from './components/FilterablePokemonsTable';
 import './App.css';
@@ -42,22 +43,25 @@ const App = () => {
   return (
     <Router>
       <Navbar />
-      <Route
-        exact
-        path="/"
-        render={() => (
-          <>
-            <FilterablePokemonsTable pokemons={currentPokemons} />
-            <Pagination
-              pokemonsPerPage={pokemonsPerPage}
-              totalPokemons={pokemons.length}
-              paginate={paginate}
-              currentPage={currentPage}
-            />
-          </>
-        )}
-      ></Route>
-      <Route path="/pokemon/:id" component={Pokemon}></Route>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <>
+              <FilterablePokemonsTable pokemons={currentPokemons} />
+              <Pagination
+                pokemonsPerPage={pokemonsPerPage}
+                totalPokemons={pokemons.length}
+                paginate={paginate}
+                currentPage={currentPage}
+              />
+            </>
+          )}
+        ></Route>
+        <Route exact path="/pokemon/:id" component={Pokemon}></Route>
+        <Route component={NotFound}></Route>
+      </Switch>
     </Router>
   );
 };

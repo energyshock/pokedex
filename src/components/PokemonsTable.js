@@ -10,8 +10,8 @@ const PokemonsTable = ({ pokemons }) => {
 
   return (
     <>
-      <div className="row g-4 capitalize">
-        {pokemons.map((pokemon, index) => (
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 capitalize">
+        {pokemons.map(pokemon => (
           <PokemonRow
             pokemon={pokemon}
             key={pokemon.name}
